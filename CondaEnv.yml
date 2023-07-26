@@ -1,9 +1,0 @@
-name: A4
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - folium
-  - pandas
-  - openrouteservice
-prefix: C:\Users\altyn\miniconda3\envs\A4
