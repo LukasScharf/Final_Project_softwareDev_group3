@@ -44,7 +44,8 @@ def getCenterCoordinates(col_coord):
 
 
 def create_Map(coordinates, zoom_start, control_scale = True):
-    """create a basemap with layer control of two different tiles (OSM and ESRI imagery)
+    """create a basemap with layer control of 6 different tiles 
+    (OSM, ESRI imagery, cartodbpositron, cartodbdark_matter, Stamen Terrain and Stamen Toner)
 
     Parameters: 
     -------------
@@ -57,11 +58,20 @@ def create_Map(coordinates, zoom_start, control_scale = True):
         Map with 2 tiles, control_scale and layer control
     """
     m = fl.Map(location = coordinates, zoom_start = zoom_start, control_scale = True)
-    tile = fl.TileLayer(tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+
+    # add tiles
+    fl.TileLayer(tiles='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                             attr='Esri', name = 'Esri Satellite',
                             overlay = False, control = True
     ).add_to(m)
+    fl.TileLayer('cartodbpositron').add_to(m)
+    fl.TileLayer('cartodbdark_matter').add_to(m)
+    fl.TileLayer('Stamen Terrain').add_to(m)
+    fl.TileLayer('Stamen Toner').add_to(m)
     fl.LayerControl().add_to(m)
+
+    # add LatLon Popup
+    m.add_child(fl.LatLngPopup())
 
     return(m)
 
