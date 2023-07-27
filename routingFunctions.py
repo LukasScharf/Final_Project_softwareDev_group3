@@ -2,6 +2,7 @@ import osmnx as ox
 import folium
 import networkx as nx
 import math
+import plotFunctions as pf
 
 # Starting coordinates by user
 def starting_coord_by_user():
@@ -75,12 +76,13 @@ def calculate_route(map, start_coords, end_coords, graph_type):
     route = nx.shortest_path(graph_type, start_node, end_node, weight='length')
 
     # add a Marker at the start_coords to the map
-    folium.Marker(location=start_coords, icon=folium.Icon(color='red')).add_to(map)
+    pf.add_point_to_map(map=map, coord=start_coords, popup = 'This is your chosen starting point', 
+                        tooltip = 'starting point', fa_icon_name='location-dot', fa_icon_color='black')
 
     # get a list of all the node-coordinates that are part of the route
     route_coordinates = get_route_coord(route=route, graph_type=graph_type)
 
-    folium.PolyLine(locations=route_coordinates, color='blue', weight=5).add_to(map)
+    folium.PolyLine(locations=route_coordinates, color='darkblue', weight=5).add_to(map)
 
     # Calculate the length of the route
     length = calculate_route_length(route_coordinates)
