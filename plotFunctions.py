@@ -71,7 +71,10 @@ def getIcon(sport_type):
     icons = {'Calisthenics': 'dumbbell',
          'Beach-Volleyball': 'volleyball',
          'Table-Tennis': 'table-tennis-paddle-ball',
-         'Climbing': 'mountain'}
+         'Climbing': 'mountain',
+         'Basketball': 'basketball',
+         'Athletics': 'person-running',
+         'Soccer': 'futbol'}
     try:
         icon = icons[sport_type]
     except:
@@ -96,7 +99,10 @@ def getColor(sport_type):
     icon_colors= {'Calisthenics': 'darkred',
               'Beach-Volleyball': 'darkblue',
               'Table-Tennis': 'green',
-              'Climbing': 'gray'}
+              'Climbing': 'gray',
+              'Basketball': 'blue',
+              'Athletics': 'orange',
+              'Soccer': 'darkgreen'}
     try:
         icon_color = icon_colors[sport_type]
     except:
